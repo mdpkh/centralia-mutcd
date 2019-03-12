@@ -74,6 +74,10 @@
 \else0%
 \fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi}
 
+\newif\ifshowstatus
+\showstatustrue
+\newcommand{\status}[1]{\ifshowstatus\section*{Status}\par#1\par\fi}
+
 \renewcommand{\booknamefont}{\sffamily\huge\bfseries}
 \renewcommand{\booknumfont}{\sffamily\huge\bfseries}
 \renewcommand{\booktitlefont}{\sffamily\Huge\mdseries}
