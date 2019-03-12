@@ -1,0 +1,14 @@
+\renewcommand{\thechapter}{\thepart\Alph{chapter}}
+
+\setsecnumdepth{subparagraph}
+\maxsecnumdepth{subparagraph}
+
+\newcounter{mpartype}[section]
+\newcommand{\mpara}{\vspace{.5\baselineskip}\refstepcounter{paragraph}}
+\newcommand{\standard}[1]{\mpara\noindent{\ifnum\thempartype=1\relax\else{}}{\bfseries{}Standard:}\\\fi\setcounter{mpartype}{1}\theparagraph\quad{\bfseries#1}}
+\newcommand{\option}[1]{\mpara\noindent{}\ifnum\thempartype=2\relax\else{}Option:\\\fi\setcounter{mpartype}{2}\theparagraph\quad{#1}}
+\newcommand{\support}[1]{\mpara\noindent{}\ifnum\thempartype=3\relax\else{}Support:\\\fi\setcounter{mpartype}{3}\theparagraph\quad{#1}}
+\newcommand{\guidance}[1]{\mpara\noindent{}\ifnum\thempartype=4\relax\else{}{\itshape{}Guidance:}\\\fi\setcounter{mpartype}{4}\theparagraph\quad{\itshape#1}}
+\newif\ifshowstatus
+\showstatustrue
+\newcommand{\status}[1]{\ifshowstatus\section*{Status}\par#1\par\fi}

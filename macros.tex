@@ -1,0 +1,66 @@
+\newcommand*{\blankpage}{%
+\vspace*{\fill}
+{\centering This page intentionally left blank \\ except for the presence of this message.\par}
+\vspace{\fill}}
+\makeatletter
+\renewcommand*{\cleardoublepage}{\cleartorecto}
+\renewcommand*{\cleartorecto}{\clearpage\if@twoside \ifodd\c@page\else
+\blankpage
+\thispagestyle{empty}
+\newpage
+\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\renewcommand*{\cleartoverso}{\clearpage\if@twoside \ifodd\c@page
+\blankpage
+\thispagestyle{empty}
+\newpage
+\if@twocolumn\hbox{}\newpage\fi\else\fi\fi}
+\makeatother
+
+\renewcommand{\thepart}{\arabic{part}}
+% \renewcommand{\thechapter} this will be defined per-book
+\renewcommand{\thesection}{\thechapter.\ifnum\value{section}<10 0\fi\arabic{section}}
+\renewcommand{\theparagraph}{\ifnum\value{paragraph}<10 0\fi\arabic{paragraph}}
+\counterwithin*{chapter}{part}
+\counterwithin*{part}{book}
+\setlength{\cftbooknumwidth}{0pc}
+\setlength{\cftbookindent}{0pc}
+\renewcommand{\booknumberlinebox}[2]{#2}
+\renewcommand*{\cftbookaftersnum}{:\\}
+\setlength{\cftpartnumwidth}{0pc}
+\setlength{\cftpartindent}{0pc}
+\renewcommand{\partnumberlinebox}[2]{#2}
+\renewcommand*{\cftpartname}{Part\space}
+\renewcommand*{\cftpartaftersnum}{:\space}
+\setlength{\cftchapternumwidth}{2pc}
+\setlength{\cftsectionnumwidth}{3pc}
+\setlength{\cftsectionindent}{0pc}
+\renewcommand{\cftdot}{\hspace{.5pc}.\hspace{-.5pc}}
+\makeatletter
+\renewcommand{\@pnumwidth}{1.5pc}
+\renewcommand{\@tocrmarg}{1.5pc}
+\makeatother
+
+\setlist[enumerate,1]{noitemsep,label={\Alph*.}}
+\setlength{\emergencystretch}{3pt}
+
+\renewcommand{\booknamefont}{\sffamily\huge\bfseries}
+\renewcommand{\booknumfont}{\sffamily\huge\bfseries}
+\renewcommand{\booktitlefont}{\sffamily\Huge\mdseries}
+\renewcommand{\bookname}{}
+\renewcommand{\beforebookskip}{\null\vfil\noindent\hrulefill\vfil}
+%\renewcommand{\midbookskip}{\par\vskip 2\onelineskip}
+\renewcommand{\afterbookskip}{\vfil\noindent\hrulefill\vfil\newpage\blankpage}
+\renewcommand{\partnamefont}{\sffamily\huge\mdseries}
+\renewcommand{\partnumfont}{\sffamily\huge\mdseries}
+\renewcommand{\parttitlefont}{\sffamily\Huge\mdseries}
+\renewcommand{\beforepartskip}{\null\vfil\noindent\hrulefill\vfil}
+\renewcommand{\afterpartskip}{\vfil\vfil\newpage\blankpage}
+\renewcommand{\chapnamefont}{\sffamily\huge\mdseries\itshape}
+\renewcommand{\chapnumfont}{\sffamily\huge\mdseries\itshape}
+\renewcommand{\chaptitlefont}{\sffamily\Huge\mdseries\upshape}
+\setsecheadstyle{\sffamily\Large\mdseries}
+
+\newcommand{\cfra}{23 CFR 655.603(a)}
+\newcommand{\cfrf}{23 Code of Federal Regulations (CFR), Part 655, Subpart F}
+
+

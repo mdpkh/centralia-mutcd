@@ -4,84 +4,12 @@
 \usepackage[paperwidth=4in,paperheight=7in,top=.25in,bottom=.25in,inner=.25in,outer=.25in,includeheadfoot]{geometry}
 \usepackage{enumitem}
 
-\newcommand*{\blankpage}{%
-\vspace*{\fill}
-{\centering This page intentionally left blank \\ except for the presence of this message.\par}
-\vspace{\fill}}
-\makeatletter
-\renewcommand*{\cleardoublepage}{\cleartorecto}
-\renewcommand*{\cleartorecto}{\clearpage\if@twoside \ifodd\c@page\else
-\blankpage
-\thispagestyle{empty}
-\newpage
-\if@twocolumn\hbox{}\newpage\fi\fi\fi}
-\renewcommand*{\cleartoverso}{\clearpage\if@twoside \ifodd\c@page
-\blankpage
-\thispagestyle{empty}
-\newpage
-\if@twocolumn\hbox{}\newpage\fi\else\fi\fi}
-\makeatother
-
-\renewcommand{\thepart}{\arabic{part}}
-% \renewcommand{\thechapter} this will be defined per-book
-\renewcommand{\thesection}{\thechapter.\ifnum\value{section}<10 0\fi\arabic{section}}
-\renewcommand{\theparagraph}{\ifnum\value{paragraph}<10 0\fi\arabic{paragraph}}
-\counterwithin*{chapter}{part}
-\counterwithin*{part}{book}
-\setlength{\cftbooknumwidth}{0pc}
-\setlength{\cftbookindent}{0pc}
-\renewcommand{\booknumberlinebox}[2]{#2}
-\renewcommand*{\cftbookaftersnum}{:\\}
-\setlength{\cftpartnumwidth}{0pc}
-\setlength{\cftpartindent}{0pc}
-\renewcommand{\partnumberlinebox}[2]{#2}
-\renewcommand*{\cftpartname}{Part\space}
-\renewcommand*{\cftpartaftersnum}{:\space}
-\setlength{\cftchapternumwidth}{2pc}
-\setlength{\cftsectionnumwidth}{3pc}
-\setlength{\cftsectionindent}{0pc}
-\renewcommand{\cftdot}{\hspace{.5pc}.\hspace{-.5pc}}
-\makeatletter
-\renewcommand{\@pnumwidth}{1.5pc}
-\renewcommand{\@tocrmarg}{1.5pc}
-\makeatother
-
-\newcounter{mpartype}[section]
-\newcommand{\mpara}{\vspace{.5\baselineskip}\refstepcounter{paragraph}}
-\newcommand{\standard}[1]{\mpara\noindent{\ifnum\thempartype=1\relax\else{}}{\bfseries{}Standard:}\\\fi\setcounter{mpartype}{1}\theparagraph\quad{\bfseries#1}}
-\newcommand{\option}[1]{\mpara\noindent{}\ifnum\thempartype=2\relax\else{}Option:\\\fi\setcounter{mpartype}{2}\theparagraph\quad{#1}}
-\newcommand{\support}[1]{\mpara\noindent{}\ifnum\thempartype=3\relax\else{}Support:\\\fi\setcounter{mpartype}{3}\theparagraph\quad{#1}}
-\newcommand{\guidance}[1]{\mpara\noindent{}\ifnum\thempartype=4\relax\else{}{\itshape{}Guidance:}\\\fi\setcounter{mpartype}{4}\theparagraph\quad{\itshape#1}}
-\newif\ifshowstatus
-\showstatustrue
-\newcommand{\status}[1]{\ifshowstatus\section*{Status}\par#1\par\fi}
-
-\setlist[enumerate,1]{noitemsep,label={\Alph*.}}
-\setlength{\emergencystretch}{3pt}
-
-\renewcommand{\booknamefont}{\sffamily\huge\bfseries}
-\renewcommand{\booknumfont}{\sffamily\huge\bfseries}
-\renewcommand{\booktitlefont}{\sffamily\Huge\mdseries}
-\renewcommand{\bookname}{}
-\renewcommand{\beforebookskip}{\null\vfil\noindent\hrulefill\vfil}
-%\renewcommand{\midbookskip}{\par\vskip 2\onelineskip}
-\renewcommand{\afterbookskip}{\vfil\noindent\hrulefill\vfil\newpage\blankpage}
-\renewcommand{\partnamefont}{\sffamily\huge\mdseries}
-\renewcommand{\partnumfont}{\sffamily\huge\mdseries}
-\renewcommand{\parttitlefont}{\sffamily\Huge\mdseries}
-\renewcommand{\beforepartskip}{\null\vfil\noindent\hrulefill\vfil}
-\renewcommand{\afterpartskip}{\vfil\vfil\newpage\blankpage}
-\renewcommand{\chapnamefont}{\sffamily\huge\mdseries\itshape}
-\renewcommand{\chapnumfont}{\sffamily\huge\mdseries\itshape}
-\renewcommand{\chaptitlefont}{\sffamily\Huge\mdseries\upshape}
-\setsecheadstyle{\sffamily\Large\mdseries}
-
-\newcommand{\cfra}{23 CFR 655.603(a)}
-\newcommand{\cfrf}{23 Code of Federal Regulations (CFR), Part 655, Subpart F}
+\newcommand\ifstandalone[1]{}
+\input{macros.tex}
 
 \begin{document}
 \title{The Royal Centralia Manual on Uniform Traffic Control Devices, Sign Design Manual, and Comprendium of Sign Fabrication Standards}
-\author{Maggie\,David P.\,K. Haynes}
+\author{Maggie\,David P.\,K. Haynes; Princess~X}
 \date{First Edition DRAFT}
 
 %\frontmatter
@@ -89,407 +17,79 @@
 
 \maketitle
 
-{\centering\includegraphics[width=3in,height=3in,draft=true]{coverpicture.pdf}\par}
+{\centering\includegraphics[width=3in,height=3in,draft=true]{graphics/coverpicture.pdf}\par}
 
 \cleartorecto
 
 \tableofcontents*
 
+\input{macros-mutcd.tex}
+
 \book{The Royal Centralia Manual on Uniform Traffic Control Devices}
-\renewcommand{\thechapter}{\thepart\Alph{chapter}}
 
-\setsecnumdepth{subparagraph}
-\maxsecnumdepth{subparagraph}
-
-\setcounter{secnumdepth}{-10}
-\addcontentsline{toc}{part}{Introduction}
-\chaptermark{Introduction}
-\chapter*{Introduction}
-\setsecnumdepth{subparagraph}
-%\savepagenumber
-%\pagenumbering{roman}
-\status{Needs to be heavily modified to match Centralia setting.}
-
-\standard{
-Traffic control devices shall be defined as all signs, signals, markings, and other devices used to regulate, warn, or guide traffic, placed on, over, or adjacent to a street, highway, pedestrian facility, bikeway, or private road open to public travel (see definition in  Section~\ref{sec:2009.1A.13} on page~\pageref{sec:2009.1A.13}) by authority of a public agency or official having jurisdiction, or, in the case of a private road, by authority of the private owner or private official having jurisdiction.}
-
-\standard{
-The Manual on Uniform Traffic Control Devices (MUTCD) is incorporated by reference in \cfrf and shall be recognized as the national standard for all traffic control devices installed on any street, highway, bikeway, or private road open to public travel (see definition in Section~\ref{sec:2009.1A.13} on page~\pageref{sec:2009.1A.13}) in accordance with 23 U.S.C. 109(d) and 402(a). The policies and procedures of the Federal Highway Administration (FHWA) to obtain basic uniformity of traffic control devices shall be as described in \cfrf.}
-
-\standard{
-In accordance with \cfra, for the purposes of applicability of the MUTCD:
-\begin{enumerate}
-\item Toll roads under the jurisdiction of public agencies or authorities or public-private partnerships shall be considered to be public highways;
-\item Private roads open to public travel shall be as defined in Section~\ref{sec:2009.1A.13} on page~\pageref{sec:2009.1A.13}; and
-\item Parking areas, including the driving aisles within those parking areas, that are either publicly or privately owned shall not be considered to be ``open to public travel'' for purposes of MUTCD applicability.
-\end{enumerate}}
-
-\standard{
-\label{p:2009.I.04}
-Any traffic control device design or application provision contained in this Manual shall be considered to be in the public domain. Traffic control devices contained in this Manual shall not be protected by a patent, trademark, or copyright, except for the Interstate Shield and any items owned by FHWA.}
-
-\support{
-Pictographs, as defined in Section~\ref{sec:2009.1A.13} on page~\pageref{sec:2009.1A.13}, are embedded in traffic control devices but the pictographs themselves are not considered traffic control devices for the purposes of Paragraph~\ref{p:2009.I.04}.}
-
-\support{
-The need for uniform standards was recognized long ago. The American Association of State Highway Officials (AASHO), now known as the American Association of State Highway and Transportation Officials (AASHTO), published a manual for rural highways in 1927, and the National Conference on Street and Highway Safety (NCSHS) published a manual for urban streets in 1930. In the early years, the necessity for unification of the standards applicable to the different classes of road and street systems was obvious. To meet this need, a joint committee of AASHO and NCSHS developed and published the original edition of this Manual on Uniform Traffic Control Devices (MUTCD) in 1935. That committee, now called the National Committee on Uniform Traffic Control Devices (NCUTCD), though changed from time to time in name, organization, and personnel, has been in continuous existence and has contributed to periodic revisions of this Manual. The FHWA has administered the MUTCD since the 1971 edition. The FHWA and its predecessor organizations have participated in the development and publishing of the previous editions. There were nine previous editions of the MUTCD, and several of those editions were revised one or more times. Table I-1 traces the evolution of the MUTCD, including the two manuals developed by AASHO and NCSHS.}
-
-\standard{
-The U.S. Secretary of Transportation, under authority granted by the Highway Safety Act of 1966, decreed that traffic control devices on all streets and highways open to public travel in accordance with 23 U.S.C. 109(d) and 402(a) in each State shall be in substantial conformance with the Standards issued or endorsed by the FHWA.}
-
-\support{
-The ``Uniform Vehicle Code (UVC)'' is one of the publications referenced in the MUTCD. The UVC contains a model set of motor vehicle codes and traffic laws for use throughout the United States.}
-
-\guidance{
-The States should adopt Section 15-116 of the UVC, which states that, ``No person shall install or maintain in any area of private property used by the public any sign, signal, marking, or other device intended to regulate, warn, or guide traffic unless it conforms with the State manual and specifications adopted under Section 15-104.''}
-
-\support{
-The Standard, Guidance, Option, and Support material described in this edition of the MUTCD provide the transportation professional with the information needed to make appropriate decisions regarding the use of traffic control devices on streets, highways, bikeways, and private roads open to public travel (see definition in Section~\ref{sec:2009.1A.13} on page~\pageref{sec:2009.1A.13}).}
-
-\support{
-Throughout this Manual the headings Standard, Guidance, Option, and Support are used to classify the nature of the text that follows. Figures and tables, including the notes contained therein, supplement the text and might constitute a Standard, Guidance, Option, or Support. The user needs to refer to the appropriate text to classify the nature of the figure, table, or note contained therein.}
-
-\standard{
-When used in this Manual, the text headings of Standard, Guidance, Option, and Support shall be as defined in Paragraph~\ref{p:2009.1A.13.01} of Section~\ref{sec:2009.1A.13} on page~\pageref{sec:2009.1A.13}.}
-
-\support{
-Throughout this Manual all dimensions and distances are provided in English units. Appendix A2 contains tables for converting each of the English unit numerical values that are used in this Manual to the equivalent Metric (International System of Units) values.}
-
-\guidance{
-If Metric units are to be used in laying out distances or determining sizes of devices, such units should be specified on plan drawings and made known to those responsible for designing, installing, or maintaining traffic control devices.}
-
-\guidance{
-Except when a specific numeral is required or recommended by the text of a Section of this Manual, numerals displayed on the images of devices in the figures that specify quantities such as times, distances, speed limits, and weights should be regarded as examples only. When installing any of these devices, the numerals should be appropriately altered to fit the specific situation.}
-
-\support{
-The following information will be useful when reference is being made to a specific portion of text in this Manual.}
-
-\support{
-There are nine Parts in this Manual and each Part is comprised of one or more Chapters. Each Chapter is comprised of one or more Sections. Parts are given a numerical identification, such as Part 2 -- Signs. Chapters are identified by the Part number and a letter, such as Chapter 2B -- Regulatory Signs, Barricades, and Gates. Sections are identified by the Chapter number and letter followed by a decimal point and a number, such as Section 2B.03 -- Size of Regulatory Signs.}
-
-\support{
-Each Section is comprised of one or more paragraphs. The paragraphs are indented and are identified by a number. Paragraphs are counted from the beginning of each Section without regard to the intervening text headings (Standard, Guidance, Option, or Support). Some paragraphs have lettered or numbered items. As an example of how to cite this Manual, the phrase ``Not less than 40 feet beyond the stop line'' that appears in Section 4D.14 of this Manual would be referenced in writing as ``Section 4D.14, P1, A.1,'' and would be verbally referenced as ``Item A.1 of Paragraph 1 of Section 4D.14.''}
-
-\standard{
-In accordance with 23 CFR 655.603(b)(3), States or other Federal agencies that have their own MUTCDs or Supplements shall revise these MUTCDs or Supplements to be in substantial conformance with changes to the National MUTCD within 2 years of the effective date of the Final Rule for the changes. Substantial conformance of such State or other Federal agency MUTCDs or Supplements shall be as defined in 23 CFR 655.603(b)(1).}
-
-\standard{
-After the effective date of a new edition of the MUTCD or a revision thereto, or after the adoption thereof by the State, whichever occurs later, new or reconstructed devices installed shall be in compliance with the new edition or revision.}
-
-\standard{
-In cases involving Federal-aid projects for new highway or bikeway construction or reconstruction, the traffic control devices installed (temporary or permanent) shall be in conformance with the most recent edition of the National MUTCD before that highway is opened or re-opened to the public for unrestricted travel [23 CFR 655.603(d)(2) and (d)(3)].}
-
-\standard{
-Unless a particular device is no longer serviceable, non-compliant devices on existing highways and bikeways shall be brought into compliance with the current edition of the National MUTCD as part of the systematic upgrading of substandard traffic control devices (and installation of new required traffic control devices) required pursuant to the Highway Safety Program, 23 U.S.C. §402(a). The FHWA has the authority to establish other target compliance dates for implementation of particular changes to the MUTCD [23 CFR 655.603(d)(1)]. These target compliance dates established by the FHWA shall be as shown in Table I-2.}
-
-\standard{
-Except as provided in Paragraph~\ref{p:2009.I.24}, when a non-compliant traffic control device is being replaced or refurbished because it is damaged, missing, or no longer serviceable for any reason, it shall be replaced with a compliant device.}
-
-\option{
-\label{p:2009.I.24}
-A damaged, missing, or otherwise non-serviceable device that is non-compliant may be replaced in kind if engineering judgment indicates that:
-\begin{enumerate}
-\item One compliant device in the midst of a series of adjacent non-compliant devices would be confusing to road users; and/or
-\item The schedule for replacement of the whole series of non-compliant devices will result in achieving timely compliance with the MUTCD.
-\end{enumerate}}
+\input{mutcd-intro.tex}
 
 \part{General}
 
-\chapter{General}
-
-\status{Check for things that need to be changed for Centralia setting in first two sections; fill in remaining sections.}
-
-\section{Purpose of Traffic Control Devices}
-
-\support{
-The purpose of traffic control devices, as well as the principles for their use, is to promote highway safety and efficiency by providing for the orderly movement of all road users on streets, highways, bikeways, and private roads open to public travel throughout the Nation.}
-
-\support{
-Traffic control devices notify road users of regulations and provide warning and guidance needed for the uniform and efficient operation of all elements of the traffic stream in a manner intended to minimize the occurrences of crashes.}
-
-\standard{
-Traffic control devices or their supports shall not bear any advertising message or any other message that is not related to traffic control.}
-
-\support{
-Tourist-oriented directional signs and Specific Service signs are not considered advertising; rather, they are classified as motorist service signs.}
-
-\section{Principles of Traffic Control Devices}
-
-\support{
-This Manual contains the basic principles that govern the design and use of traffic control devices for all streets, highways, bikeways, and private roads open to public travel (see definition in Section~\ref{sec:2009.1A.13} on page~\pageref{sec:2009.1A.13}) regardless of type or class or the public agency, official, or owner having jurisdiction. This Manual's text specifies the restriction on the use of a device if it is intended for limited application or for a specific system. It is important that these principles be given primary consideration in the selection and application of each device.}
-
-\guidance{
-To be effective, a traffic control device should meet five basic requirements:
-\begin{enumerate}
-\item Fulfill a need;
-\item Command attention;
-\item Convey a clear, simple meaning;
-\item Command respect from road users; and
-\item Give adequate time for proper response.
-\end{enumerate}}
-
-\guidance{
-Design, placement, operation, maintenance, and uniformity are aspects that should be carefully considered in order to maximize the ability of a traffic control device to meet the five requirements listed in the previous paragraph. Vehicle speed should be carefully considered as an element that governs the design, operation, placement, and location of various traffic control devices.}
-
-\support{
-The definition of the word ``speed'' varies depending on its use. The definitions of specific speed terms are contained in Section~\ref{sec:2009.1A.13} on page~\pageref{sec:2009.1A.13}.}
-
-\guidance{
-The actions required of road users to obey regulatory devices should be specified by State statute, or in cases not covered by State statute, by local ordinance or resolution. Such statutes, ordinances, and resolutions should be consistent with the ``Uniform Vehicle Code'' (see Section~\ref{sec:2009.1A.11} on page~\pageref{sec:2009.1A.11}).}
-
-\guidance{
-The proper use of traffic control devices should provide the reasonable and prudent road user with the information necessary to efficiently and lawfully use the streets, highways, pedestrian facilities, and bikeways.}
-
-\support{
-Uniformity of the meaning of traffic control devices is vital to their effectiveness. The meanings ascribed to devices in this Manual are in general accord with the publications mentioned in Section~\ref{sec:2009.1A.11} on page~\pageref{sec:2009.1A.11}.}
-
-\section{Design of Traffic Control Devices}
-
-section
-
-\section{Placement and Operation of Traffic Control Devices}
-
-section
-
-\section{Maintenance of Traffic Control Devices}
-
-section
-
-\section{Uniformity of Traffic Control Devices}
-
-section
-
-\section{Responsibility for Traffic Control Devices}
-
-section
-
-\section{Authority for Placement of Traffic Control Devices}
-
-section
-
-\section{Engineering Study and Engineering Judgment}
-
-section
-
-\section{Interpretations, Experimentations, Changes, and Interim Approvals}
-
-section
-
-\section{Relation to Other Publications}
-\label{sec:2009.1A.11}
-
-section
-
-\section{Color Code}
-
-section
-
-\section{Definitions of Headings, Words, and Phrases in this Manual}
-\label{sec:2009.1A.13}
-\status{Fill in remainder of this section.}
-
-\standard{
-\label{p:2009.1A.13.01}
-When used in this Manual, the text headings of Standard, Guidance, Option, and Support shall be defined as follows:
-\begin{enumerate}
-\item Standard---a statement of required, mandatory, or specifically prohibitive practice regarding a traffic control device. All Standard statements are labeled, and the text appears in bold type. The verb ``shall'' is typically used. The verbs ``should'' and ``may'' are not used in Standard statements. Standard statements are sometimes modified by Options.
-\item Guidance---a statement of recommended, but not mandatory, practice in typical situations, with deviations allowed if engineering judgment or engineering study indicates the deviation to be appropriate. All Guidance statements are labeled, and the text appears in unbold type. The verb ``should'' is typically used. The verbs ``shall'' and ``may'' are not used in Guidance statements. Guidance statements are sometimes modified by Options.
-\item Option---a statement of practice that is a permissive condition and carries no requirement or recommendation. Option statements sometime contain allowable modifications to a Standard or Guidance statement. All Option statements are labeled, and the text appears in unbold type. The verb ``may'' is typically used. The verbs ``shall'' and ``should'' are not used in Option statements.
-\item Support---an informational statement that does not convey any degree of mandate, recommendation, authorization, prohibition, or enforceable condition. Support statements are labeled, and the text appears in unbold type. The verbs ``shall,'' ``should,'' and ``may'' are not used in Support statements.
-\end{enumerate}}
-
-
-\section{Meanings of Acronyms and Abbreviations in this Manual}
-
-section
-
-\section{Abbreviations Used on Traffic Control Devices}
-
-section
+\input{mutcd-general-general.tex}
 
 \part{Highway Signs}
 
-\chapter{General}
+\input{mutcd-sign-general.tex}
 
-\status{Blank.}
+\input{mutcd-sign-regugate.tex}
 
-\section{section}
+\input{mutcd-sign-warn.tex}
 
-section
+\input{mutcd-sign-convguide.tex}
 
-\chapter{Regulatory Signs, Barricades, and Gates}
+\input{mutcd-sign-freeguide.tex}
 
-\status{Blank.}
+\input{mutcd-sign-troll.tex}
 
-\section{section}
+\input{mutcd-sign-lane.tex}
 
-section
+\input{mutcd-sign-info.tex}
 
-\chapter{Warning Signs and Object Markers}
+\input{mutcd-sign-genserv.tex}
 
-\status{Blank.}
+\input{mutcd-sign-specserv.tex}
 
-\section{section}
+\input{mutcd-sign-tour.tex}
 
-section
+\input{mutcd-sign-chmsg.tex}
 
-\chapter{Guide Signs for Conventional Roads}
+\input{mutcd-sign-rec.tex}
 
-\status{Blank.}
-
-\section{section}
-
-section
-
-\chapter{Guide Signs for Expressways and Freeways}
-
-\status{Blank.}
-
-\section{section}
-
-section
-
-\chapter{Toll Road Signs}
-
-\status{Blank.}
-
-\section{section}
-
-section
-
-\chapter{Preferential and Managed Lane Signs}
-
-\status{Blank.}
-
-\section{section}
-
-section
-
-\chapter{General Information Signs}
-
-\status{Blank.}
-
-\section{section}
-
-section
-
-\chapter{General Service Signs}
-
-\status{Blank.}
-
-\section{section}
-
-section
-
-\chapter{Specific Service Signs}
-
-\status{Blank.}
-
-\section{section}
-
-section
-
-\chapter{Tourist-Oriented Directional Signs}
-
-\status{Blank.}
-
-\section{section}
-
-section
-
-\chapter{Changeable Message Signs}
-
-\status{Blank.}
-
-\section{section}
-
-section
-
-\chapter{Recreational and Cultural Interest Area Signs}
-
-\status{Blank.}
-
-\section{section}
-
-section
-
-\chapter{Emergency Management Signing}
-
-\status{Blank.}
-
-\section{section}
-
-section
+\input{mutcd-sign-eman.tex}
 
 \part{Pavement Markings}
 
-\status{Blank.}
-
-\chapter{General}
-
-\section{section}
-
-section
+\input{mutcd-pavmar-general.tex}
 
 \part{Highway Traffic Signals}
 
-\status{Blank.}
-
-\chapter{General}
-
-\section{section}
-
-section
+\input{mutcd-signal-general.tex}
 
 \part{Traffic Control Devices for Low-Volume Roads}
 
-\status{Blank.}
-
-\chapter{General}
-
-\section{section}
-
-section
+\input{mutcd-lowvol-general.tex}
 
 \part{Temporary Traffic Control}
 
-\status{Blank.}
-
-\chapter{General}
-
-\section{section}
-
-section
+\input{mutcd-temp-general.tex}
 
 \part{Traffic Control for School Areas}
 
-\status{Blank.}
-
-\chapter{General}
-
-\section{section}
-
-section
+\input{mutcd-school-general.tex}
 
 \part{Traffic Control for Railroad Crossings}
 
-\status{Blank.}
-
-\chapter{General}
-
-\section{section}
-
-section
+\input{mutcd-rr-general.tex}
 
 \part{Traffic Control for Bicycle Facilities}
 
-\status{Blank.}
-
-\chapter{General}
-
-\section{section}
-
-section
+\input{mutcd-bike-general.tex}
 
 \book{The Royal Centralia Sign Design Manual}
 \renewcommand{\thechapter}{\arabic{chapter}}
@@ -515,7 +115,7 @@ section
 
 \pagestyle{empty}\newgeometry{top=.25in,bottom=.25in,inner=.25in,outer=.25in,ignoreheadfoot}\cleartoverso
 %comment or uncomment the following line as necessary to make a multiple of 4 pages
-\blankpage
+%\blankpage
 \cleartoverso
 
 \null\vfill
