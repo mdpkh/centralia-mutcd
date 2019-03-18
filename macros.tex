@@ -19,6 +19,7 @@
 \renewcommand{\thepart}{\arabic{part}}
 % \renewcommand{\thechapter} this will be defined per-book
 \renewcommand{\thesection}{\thechapter.\ifnum\value{section}<10 0\fi\arabic{section}}
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
 \renewcommand{\theparagraph}{\ifnum\value{paragraph}<10 0\fi\arabic{paragraph}}
 \counterwithin*{chapter}{part}
 \counterwithin*{part}{book}
@@ -41,6 +42,7 @@
 \makeatother
 
 \setlist[enumerate,1]{noitemsep,label={\Alph*.}}
+\setlist[enumerate,2]{noitemsep,label={\arabic*.}}
 \setlength{\emergencystretch}{3pt}
 
 \newcommand\setnext[2]{\setcounter{#1}{#2}\addtocounter{#1}{-1}}
