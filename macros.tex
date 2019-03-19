@@ -97,6 +97,23 @@
 \renewcommand{\chaptitlefont}{\sffamily\Huge\mdseries\upshape}
 \setsecheadstyle{\sffamily\Large\mdseries}
 
+\let\oldcontentsline\contentsline
+\renewcommand\contentsline[4]{
+\def\eqtesta{#1}
+\ifx\eqtesta\figureliteral
+\ifx\lofbook\thisbook
+\oldcontentsline{#1}{#2}{#3}{#4}
+\fi
+\else
+\oldcontentsline{#1}{#2}{#3}{#4}
+\fi
+}
+\newcommand\startlofdomain[1]{
+\write1{\string\@writefile{lof}{\string\def\string\lofbook{#1}}}
+\def\thisbook{#1}
+}
+\def\figureliteral{figure}
+
 \newcommand{\cfR}{23 CFR 655.603}
 \newcommand{\cfra}{23 CFR 655.603(a)}
 \newcommand{\cfrf}{23 Code of Federal Regulations (CFR), Part 655, Subpart F}

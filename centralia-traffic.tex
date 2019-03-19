@@ -1,12 +1,8 @@
 \documentclass[9pt]{memoir}
-\usepackage{graphicx}
-\usepackage[hidelinks]{hyperref}
-\usepackage[paperwidth=4in,paperheight=7in,top=.25in,bottom=.25in,inner=.25in,outer=.25in,includeheadfoot]{geometry}
-\usepackage{enumitem}
-\usepackage[all]{xypic}
-
 \newcommand\ifstandalone[1]{}
+\input{packages.tex}
 \input{macros.tex}
+
 %uncomment next line to hide ``status'' notes in rendered document
 %\showstatusfalse
 
@@ -27,8 +23,8 @@
 \tableofcontents*
 
 \input{macros-mutcd.tex}
-
 \book{The Royal Centralia Manual on Uniform Traffic Control Devices}
+\startlofdomain{MUTCD}
 
 \input{mutcd-intro.tex}
 
@@ -96,31 +92,25 @@
 
 \input{mutcd-bike-general.tex}
 
+\input{macros-sdm.tex}
 \book{The Royal Centralia Sign Design Manual}
-\renewcommand{\thechapter}{\arabic{chapter}}
+\startlofdomain{SDM}
+
+\input{sdm-intro.tex}
 
 \listoffigures
 
-\status{Blank.}
+\input{sdm-general.tex}
 
-\chapter{General}
-
-\section{section}
-
-section
-
+\input{macros-csfs.tex}
 \book{The Royal Centralia Comprendium of Sign Fabrication Standards}
-\renewcommand{\thechapter}{\arabic{chapter}}
+\startlofdomain{CSFS}
+
+\input{csfs-intro.tex}
 
 \listoffigures
 
-\status{Blank.}
-
-\chapter{General}
-
-\section{section}
-
-section
+\input{csfs-general.tex}
 
 \pagestyle{empty}\newgeometry{top=.25in,bottom=.25in,inner=.25in,outer=.25in,ignoreheadfoot}
 \cleartoverso
