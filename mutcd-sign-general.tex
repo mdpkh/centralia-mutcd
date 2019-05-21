@@ -1,10 +1,7 @@
 \providecommand\ifstandalone[1]{#1}
 \ifstandalone{
 \documentclass[9pt]{memoir}
-\usepackage{graphicx}
-\usepackage[hidelinks]{hyperref}
-\usepackage[paperwidth=4in,paperheight=7in,top=.25in,bottom=.25in,inner=.25in,outer=.25in,includeheadfoot]{geometry}
-\usepackage{enumitem}
+\input{packages.tex}
 \input{macros.tex}
 \input{macros-mutcd.tex}
 \begin{document}
@@ -13,14 +10,35 @@
 \part{Highway Signs}
 \setnext{chapter}{\letterval{A}}
 }
+\label{part:2009.2}
 
 \chapter{General}
 
-\status{Blank.}
+\status{Copying and \LaTeX ifying in progress.}
 
-\section{section}
+\section{Function and Purpose of Signs}
 
-section
+\support{
+This Manual contains Standards, Guidance, and Options for the signing of all types of highways, and private roads open to public travel. The functions of signs are to provide regulations, warnings, and guidance information for road users. Words, symbols, and arrows are used to convey the messages. Signs are not typically used to confirm rules of the road.}
 
+\support{Detailed sign requirements are located in the following Chapters of Part \ref{part:2009.2}:
+\begin{itemize}
+\item Chapter \ref{chap:2009.2B} (page \pageref{chap:2009.2B})—Regulatory Signs, Barricades, and Gates
+\item Chapter \ref{chap:2009.2C} (page \pageref{chap:2009.2C})—Warning Signs and Object Markers
+\item Chapter \ref{chap:2009.2D} (page \pageref{chap:2009.2D})—Guide Signs for Conventional Roads
+\item Chapter \ref{chap:2009.2E} (page \pageref{chap:2009.2E})—Guide Signs for Freeways and Expressways
+\item Chapter \ref{chap:2009.2F} (page \pageref{chap:2009.2F})—Troll Road Signs
+\item Chapter \ref{chap:2009.2G} (page \pageref{chap:2009.2G})—Preferential and Managed Lane Signs
+\item Chapter \ref{chap:2009.2H} (page \pageref{chap:2009.2H})—General Information Signs
+\item Chapter \ref{chap:2009.2I} (page \pageref{chap:2009.2I})—General Service Signs
+\item Chapter \ref{chap:2009.2J} (page \pageref{chap:2009.2J})—Specific Service (Logo) Signs
+\item Chapter \ref{chap:2009.2K} (page \pageref{chap:2009.2K})—Tourist-Oriented Directional Signs
+\item Chapter \ref{chap:2009.2L} (page \pageref{chap:2009.2L})—Changeable Message Signs
+\item Chapter \ref{chap:2009.2M} (page \pageref{chap:2009.2M})—Recreational and Cultural Interest Area Signs
+\item Chapter \ref{chap:2009.2N} (page \pageref{chap:2009.2N})—Emergency Management Signs
+\end{itemize}
+}
+
+\standard{Because the requirements and standards for signs depend on the particular type of highway upon which they are to be used, the definitions for freeway, expressway, conventional road, and special purpose road given in Section \ref{sec:2009.1A.13} beginning on page \pageref{sec:2009.1A.13} shall apply in Part \ref{part:2009.2}.}
 
 \ifstandalone{\end{document}}
